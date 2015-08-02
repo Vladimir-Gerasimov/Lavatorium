@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -30,7 +29,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script src="https://vk.com/js/api/openapi.js" type="text/javascript"></script>
+	
 </head>
 
 <body id="page-top" class="index">
@@ -56,6 +56,9 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#" onclick="VK.Auth.login(authInfo);">VK Auth</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
@@ -77,6 +80,26 @@
         <!-- /.container-fluid -->
     </nav>
 
+	
+	
+	<script language="javascript">
+	VK.init({
+	  apiId: 5012186
+	});
+	function authInfo(response) {
+	  if (response.session) {
+		alert('user: '+response.session.mid);
+	  } else {
+		alert('not auth');
+	  }
+	}
+	VK.Auth.getLoginStatus(authInfo);
+	VK.UI.button('login_button');
+	</script>
+	
+	
+	
+	
     <!-- Header -->
     <header>
         <div class="container">
