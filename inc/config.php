@@ -4,7 +4,7 @@
 #	Section 0: base
 ###########
 $base_uri = 'http://ferma.net78.net';
-
+option( 'base_uri', '/' );
 
 ############
 #	Section 1: Vkontakte
@@ -14,6 +14,7 @@ $client_secret = '6aWMLP567gsUCLBsX6xL';
 $auth_uri = $base_uri . '/auth/';
 $access_token_uri = 'https://oauth.vk.com/access_token';
 $user_data_uri = 'https://api.vk.com/method/users.get';
+$user_friends_uri = 'https://api.vk.com/method/friends.get';
 
 $url = 'http://oauth.vk.com/authorize';
 $vkinit = array(

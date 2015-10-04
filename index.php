@@ -1,20 +1,43 @@
 ﻿<?php
-require 'inc/flight/Flight.php';
+require_once( 'inc/limonade.php' );
+require_once( "inc/vk_api.php" );
+require_once( "inc/config.php" );
 
-Flight::route('/', function(){
-    echo 'Index page';
-});
+dispatch( '/', 'MainPage' );
+dispatch( '/auth', 'Auth' );
+dispatch( '/game/:user', 'GamePage' );
 
-Flight::route('/game', function(){
-    echo 'game page';
-});
+function MainPage() {
+	global $vk_auth_link;
+	if( isset( $_SESSION[ 'uid' ] ) && isset( $_SESSION[ 'access_token' ] ) ) {
+		echo 'logged in\n';
+		echo '<a href="/game">GAME</a>';
+	} else {
+		echo '<a href="' . $vk_auth_link . '">VK AUTH</a>';
+	}
+}
 
-Flight::start();
+function Auth() {
+	global $base_uri;
+	$user = login();
+	if( isset( $user[ 'uid' ] ) && isset( $user[ 'access_token' ] ) ) {
+		$_SESSION[ 'uid' ] = $user[ 'uid' ];
+		$_SESSION[ 'access_token' ] = $user[ 'access_token' ];
+		header( "Location: " . $base_uri );
+	} else {
+		///auth failed
+	}
+	
+	return 'auth page!';
+}
 
-
-
-
-
+function GamePage() {
+	$user = getUserInfo( $_SESSION[ 'access_token' ], $_SESSION[ 'uid' ] );
+	echo $user[ 'first_name' ] . " " . $user[ 'last_name' ];
+	echo "<img src=\"". $user[ 'photo_max' ] . "\" />";
+	return 'Hello world!';
+}
+run();
 
 /*
 session_start();
