@@ -1,10 +1,10 @@
 ﻿<?php
 
-function getUserInfo( $access_token, $uid ) {
+function getUserInfo( $access_token, $uid, $fields ) {
 	global $user_data_uri;
 	$params = array(
 		'uids'		 => $uid,
-		'fields'	   => 'photo_max',
+		'fields'	   => $fields,
 		'access_token' => $access_token
 	);
 
@@ -18,11 +18,11 @@ function getUserInfo( $access_token, $uid ) {
 function getUserFriends( $access_token, $uid ) {
 	global $user_friends_uri;
 	$params = array(
-		'user_id'		 => $uid,
-		'fields'	   => '',
-		'access_token' => $access_token
+		'user_id'		=> $uid,
+		'fields'		=> 'photo_50',
+		'access_token'	=> $access_token
 	);
-	$friendsInfo = getVKData( $user_data_uri, $params );
+	$friendsInfo = getVKData( $user_friends_uri, $params );
 	if( isset( $friendsInfo[ 'response' ] ) ) {
 		$friendsInfo = $friendsInfo[ 'response' ];
 	}
@@ -54,6 +54,8 @@ function login() {
 			}
 			$user[ 'access_token' ] = $token[ 'access_token' ];
 			$user[ 'uid' ] = $userInfo[ 'uid' ];
+			$user[ 'first_name' ] = $userInfo[ 'first_name' ];
+			$user[ 'last_name' ] = $userInfo[ 'last_name' ];
 		}
 	}
 	return $user;
