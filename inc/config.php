@@ -24,5 +24,19 @@ $vkinit = array(
 );
 $vk_auth_link = $url . '?' . urldecode( http_build_query( $vkinit ) );
 
+############
+#	Section 2: MySQL
+############
+$mysql_host = "mysql2.000webhost.com";
+$mysql_database = "a8855041_dev";
+$mysql_user = "a8855041_dev";
+$mysql_password = "a8855041_dev";
 
+$dsn = "mysql:host=$mysql_host;dbname=$mysql_database;charset=utf8";
+$pdo = new PDO( $dsn, $mysql_user, $mysql_password, 
+	array(
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+	)
+);
 ?>
