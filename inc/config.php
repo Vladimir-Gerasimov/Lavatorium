@@ -39,4 +39,10 @@ $pdo = new PDO( $dsn, $mysql_user, $mysql_password,
 		PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
 	)
 );
+
+############
+#	Section 3: Game Stats
+############
+$single_shit_points = 10;
+
 ?>
