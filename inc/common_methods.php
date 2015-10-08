@@ -56,4 +56,47 @@ function toShit( $uid ) {
 	}
 }
 
+function getShop() {
+	global $pdo;
+	$q = "	SELECT 
+				`shop_items`.`id`,
+				`shop_items`.`name`,
+				`shop_items`.`description`,
+				`shop_items`.`level`,
+				`shop_category`.`name` AS cat_name,
+				`shop_category`.`description` AS cat_desc,
+				`shop_items`.`price`,
+				`shop_items`.`usage_type`,
+				`shop_usage_type`.`name` AS usage_name,
+				`shop_items`.`usage_time`,
+				`shop_items`.`category_id` 
+			FROM
+				`shop_items`,
+				`shop_category`,
+				`shop_usage_type`
+			WHERE
+				`shop_items`.`category_id`=`shop_category`.`id` AND
+				`shop_items`.`usage_type`=`shop_usage_type`.`id`";
+	$data = array();	
+	foreach( $pdo->query( $q ) as $row ) {
+		if( !isset( $data[ $row[ 'category_id' ] ] ) ) {
+			$data[ $row[ 'category_id' ] ] = array();
+			$data[ $row[ 'category_id' ] ][ 'name' ] 		= $row[ 'cat_name' ];
+			$data[ $row[ 'category_id' ] ][ 'description' ] = $row[ 'cat_desc' ];
+			$data[ $row[ 'category_id' ] ][ 'items' ] 		= array();
+		}
+		$data[ $row[ 'category_id' ] ][ 'items' ][] = array(
+			'id' 			=> $row[ 'id' ],
+			'name' 			=> $row[ 'name' ],
+			'description' 	=> $row[ 'description' ],
+			'level' 		=> $row[ 'level' ],
+			'price' 		=> $row[ 'price' ],
+			'usage' 		=> $row[ 'usage_name' ],
+			'usage_type' 	=> $row[ 'usage_type' ],
+			'usage_time' 	=> $row[ 'usage_time' ],
+		);
+	}
+	return $data;
+}
+
 ?>

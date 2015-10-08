@@ -5,7 +5,7 @@ function GamePage() {
 	$uid = params( 'user' );
 	
 	if( !isset( $_SESSION[ 'uid' ] ) ) { 
-		return 0;
+		return 0;///error
 	} else { 
 		createToken( $_SESSION[ 'uid' ] );
 	}
@@ -29,6 +29,9 @@ function GamePage() {
 	if( $shit ) {
 		echo "<a href=\"/shit/" . $_SESSION[ 'uid' ] . "/" . $uid . "/" . getToken( $_SESSION[ 'uid' ] ) . "\">shit</a><br>";
 	}
+	
+	echo "<a href=\"/shop\"><br>";
+	
 	$friends = getUserFriends( $_SESSION[ 'access_token' ], $uid );
 	foreach( $friends as $friend ) {
 		echo $friend[ "first_name" ] . " " . $friend[ "last_name" ] . "<br>";

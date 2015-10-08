@@ -10,9 +10,12 @@ require_once( "ext/shit.php" );
 require_once( "ext/mainPage.php" );
 require_once( "ext/gamePage.php" );
 require_once( "ext/auth.php" );
+require_once( "ext/shop.php" );
 
 dispatch( '/', 'MainPage' );
 dispatch( '/auth', 'Auth' );
+dispatch( '/shop', 'Shop' );
+dispatch( '/buy/:id/:token', 'Buy' );
 dispatch( '/game/:user', 'GamePage' );
 dispatch( '/shit/:from/:to/:token', 'ShitFunc' );
 
