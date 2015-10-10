@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function GamePage() {
 	global $base_uri;

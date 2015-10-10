@@ -2,15 +2,21 @@
 
 function MainPage() {
 	global $vk_auth_link;
+	$params = array();
 	if( isset( $_SESSION[ 'uid' ] ) && isset( $_SESSION[ 'access_token' ] ) ) {
 		createToken( $_SESSION[ 'uid' ] );
-		// 'logged in<br>';
-		//echo '<a href="/game">GAME</a>';
+		$params[ 'login' ] = 1;
+		$params[ 'button_class' ] = "btn btn-success";
+		$params[ 'link' ] = "/game";
+		$params[ 'link_text' ] = "Играть";
 	} else {
-		//echo '<a href="' . $vk_auth_link . '">VK AUTH</a>';
+		$params[ 'login' ] = 0;
+		$params[ 'button_class' ] = "btn btn-primary";
+		$params[ 'link' ] = $vk_auth_link;
+		$params[ 'link_text' ] = "Авторизация ВК";
 	}
-	
-	return html( 'index.html.php' );
+		
+	return html( 'index.html.php', null, $params );
 }
 
 ?>

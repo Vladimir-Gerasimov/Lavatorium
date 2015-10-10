@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function check_registration( $uid ) {
 	global $pdo;

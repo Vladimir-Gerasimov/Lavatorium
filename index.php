@@ -1,10 +1,9 @@
-﻿<?php
+<?php
 
 require_once( "inc/limonade.php" );
 require_once( "inc/config.php" );
 require_once( "inc/vk_api.php" );
 require_once( "inc/common_methods.php" );
-require_once( "inc/game_methods.php" );
 
 require_once( "ext/shit.php" );
 require_once( "ext/mainPage.php" );

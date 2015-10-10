@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function getUserInfo( $access_token, $uid, $fields ) {
 	global $user_data_uri;

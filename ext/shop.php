@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 
 function Shop() {
 	if( !isset( $_SESSION[ 'uid' ] ) ) { return 0; /*error*/ }
 	
 	$data = getShop();
-		
+
 	foreach( $data as $cat_id ) {
 		echo $cat_id[ 'name' ] . "<br>";
 		echo $cat_id[ 'description' ] . "<br>";
