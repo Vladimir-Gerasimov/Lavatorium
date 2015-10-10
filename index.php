@@ -17,7 +17,7 @@ dispatch( '/auth', 'Auth' );
 dispatch( '/shop', 'Shop' );
 dispatch( '/buy/:id/:token', 'Buy' );
 dispatch( '/game/:user', 'GamePage' );
-dispatch( '/shit/:from/:to/:token', 'ShitFunc' );
+dispatch( '/shit/:to/:token', 'ShitFunc' );
 
 run();
 

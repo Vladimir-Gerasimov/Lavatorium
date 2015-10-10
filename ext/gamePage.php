@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 function GamePage() {
 	global $base_uri;
@@ -30,7 +30,7 @@ function GamePage() {
 		echo "<a href=\"/shit/" . $_SESSION[ 'uid' ] . "/" . $uid . "/" . getToken( $_SESSION[ 'uid' ] ) . "\">shit</a><br>";
 	}
 	
-	echo "<a href=\"/shop\"><br>";
+	echo "<a href=\"/shop\">МАГАЗИН</a><br>";
 	
 	$friends = getUserFriends( $_SESSION[ 'access_token' ], $uid );
 	foreach( $friends as $friend ) {
